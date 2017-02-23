@@ -6,19 +6,19 @@ const cities = [];
 
 fetch(endpoint)
   .then(blob => blob.json())
-  .then(data => cities.push(...data))
+  .then(data => cities.push(...data));
 
 
 function findMatches(wordToMatch, cities) {
   return cities.filter(place => { //here we need to figure out if the city or state was searched
 
 
-    const regex =new RegExp(wordToMatch, 'gi');
-    return place.city.match(regex) || place.state.match(regex);
+    const regex = new RegExp(wordToMatch, 'gi');
+    return place.city.match(regex) || place.state.match(regex)
   });
 }
 
-function numberWithCommas(x){
+function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
@@ -28,8 +28,8 @@ function displayMatches(){
   // console.log(matchArray);
   const html = matchArray.map(place => {
     const regex = new RegExp(this.value, 'gi');
-    const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
-    const stateName = place.state.replace(regex, `<span class="h1">${this.value}</span>`);
+    const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+    const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
     return `
       <li>
         <span class = "name">${cityName}, ${stateName}</span>
